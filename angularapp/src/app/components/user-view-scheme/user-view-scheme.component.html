@@ -1,0 +1,65 @@
+<app-usernav *ngIf=isLoggedIn()></app-usernav>
+<br>
+
+<div class="user-view-scheme">
+    <section class="scheme-section">
+      <h2>Available WiFi Schemes</h2>
+      <input
+        type="text"
+        placeholder="Search by Scheme Name, Description, or Region"
+        [(ngModel)]="searchTerm"
+        (input)="filterSchemes()"
+      />
+  
+      <table>
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Scheme Name</th>
+            <th>Description</th>
+            <th>Region</th>
+            <th>Speed</th>
+            <th>Data Limit</th>
+            <th>Fee</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf="filteredSchemes.length === 0">
+              <td colspan="9" class="no-records">Oops! No records found.</td>
+            </tr>
+            <tr *ngFor="let scheme of filteredSchemes; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ scheme.schemeName }}</td>
+              <td>{{ scheme.description }}</td>
+              <td>{{ scheme.region }}</td>
+              <td>{{ scheme.speed }}</td>
+              <td>{{ scheme.dataLimit }}</td>
+              <td>₹{{ scheme.fee }}</td>
+              <td>{{ scheme.availabilityStatus }}</td>
+              <td>
+                <button
+                *ngIf="isLoggedIn(); else buyButton"
+                class="apply"
+                (click)="handleAction(scheme)"
+              >
+                Apply
+              </button>
+              
+              <ng-template #buyButton>
+                <button
+                  class="buy"
+                  (click)="redirectToLogin()"
+                >
+                  Buy
+                </button>
+              </ng-template>
+              
+              </td>
+            </tr>
+        </tbody>          
+      </table>
+    </section>
+  </div>
+  

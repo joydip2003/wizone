@@ -1,0 +1,50 @@
+<div class="homepage-container">
+
+  <!-- Top Navigation Bar -->
+  <div class="navbar" id="top-navbar">
+    <div class="logo" id="brand-logo">WiZone</div>
+    <ul class="nav-links" id="nav-menu">
+      <li><a (click)="goToLogin()" class="nav-link">Login</a></li>
+      <li><a (click)="goToSignup()" class="nav-link">Signup</a></li>
+    </ul>
+  </div>
+
+  <!-- Hero Section with Airtel Banner -->
+  <div class="hero" id="main-hero">
+    <div class="hero-bg"></div> <!-- Background image applied via CSS -->
+
+    <div class="wifi-icons" id="wifi-animation">
+      <span class="wifi"></span>
+      <span class="wifi"></span>
+      <span class="wifi"></span>
+      <span class="wifi"></span>
+      <span class="wifi"></span>
+      <span class="wifi"></span>
+    </div>
+
+    <div class="hero-text" id="hero-content">
+      <h1 class="hero-title">Welcome to WiZone</h1>
+     
+      <div class="hero-description">
+        <h3 >WiZone: Fast. Reliable. Everywhere.</h3>
+        Experience seamless connectivity with plans built for you.
+      </div>
+      <button class="cta-button" (click)="goToLogin()">Buy Wi-Fi</button>
+    </div>
+  </div>
+
+  <!-- Scheme Viewer -->
+  <div id="scheme-view">
+    <app-user-view-scheme></app-user-view-scheme>
+  </div>
+
+  <footer id="site-footer">
+    <div class="contact-card">
+      <h3>Contact Us</h3>
+      <p><b>Phone:</b> 123-456-7890</p>
+      <p><a href="mailto:support@wifeselector.com">Email</a></p>
+    </div>
+  </footer>
+  
+
+</div>

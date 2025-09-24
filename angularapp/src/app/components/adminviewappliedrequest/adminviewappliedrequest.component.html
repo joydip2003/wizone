@@ -1,0 +1,117 @@
+<app-adminnav></app-adminnav>
+<br />
+<div class="container mt-4">
+  <h3>WiFi Scheme Requests for Approval</h3>
+
+  <div class="d-flex justify-content-between align-items-center my-3">
+    <input
+      type="text"
+      class="form-control w-50"
+      placeholder="Search by Scheme Name..."
+      [(ngModel)]="searchText"
+      (input)="applyFilters()"
+    />
+    <select
+      class="form-select w-25 ms-3"
+      [(ngModel)]="filterStatus"
+      (change)="applyFilters()"
+    >
+      <option value="All">Filter by Status: All</option>
+      <option value="Approved">Approved</option>
+      <option value="Pending">Pending</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+  </div>
+
+  <table class="table table-bordered text-center" *ngIf="filteredRequests.length > 0">
+    <thead class="table-dark">
+      <tr>
+        <th>S.No</th>
+        <th>User Name</th>
+        <th>Scheme Name</th>
+        <th>City</th>
+        <th>Request Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of filteredRequests; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ request.user?.username }}</td>
+        <td>{{ request.wifiScheme?.schemeName }}</td>
+        <td>{{ request.city }}</td>
+        <td>{{ request.requestDate | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ request.status }}</td>
+        <td>
+          <button class="btn btn-info btn-sm" (click)="showMore(request)">Show More</button>
+          <button
+          class="btn btn-success btn-sm me-1"
+          [disabled]="request.status === 'Approved'"
+          (click)="approveRequest(request)"
+        >
+          Approve
+        </button>
+        
+        <button
+          class="btn btn-danger btn-sm"
+          [disabled]="request.status === 'Rejected'"
+          (click)="rejectRequest(request)"
+        >
+          Reject
+        </button>
+        
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="filteredRequests.length === 0" class="text-center mt-4 text-danger">
+    Oops! No records found.
+  </div>
+</div>
+
+<!-- Modal for "Show More" -->
+<div class="modal-backdrop fade show" *ngIf="selectedRequest"></div>
+
+<div class="modal d-block" tabindex="-1" *ngIf="selectedRequest">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Request Details</h5>
+        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <p><strong>User Name:</strong> {{ selectedRequest.user?.username }}</p>
+        <p><strong>Scheme Name:</strong> {{ selectedRequest.wifiScheme?.schemeName }}</p>
+        <p><strong>City:</strong> {{ selectedRequest.city }}</p>
+        <p><strong>Request Date:</strong> {{ selectedRequest.requestDate | date: 'yyyy-MM-dd' }}</p>
+        <p><strong>Status:</strong> {{ selectedRequest.status }}</p>
+        <p><strong>Street Name:</strong> {{ selectedRequest.streetName }}</p>
+        <p><strong>Landmark:</strong> {{ selectedRequest.landmark }}</p>
+        <p><strong>Preferred Setup Date:</strong> {{ selectedRequest.preferredSetupDate | date: 'yyyy-MM-dd' }}</p>
+        <p><strong>Time Slot:</strong> {{ selectedRequest.timeSlot }}</p>
+
+        <div *ngIf="selectedRequest.proof; else noProof">
+          <strong>Proof:</strong><br />
+          <img
+            [src]="getProofUrl(selectedRequest.proof)"
+            alt="Proof"
+            class="img-fluid rounded border mt-2"
+            style="max-height: 300px;"
+          />
+        </div>
+        <ng-template #noProof>
+          <p class="text-muted">No proof uploaded.</p>
+        </ng-template>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>

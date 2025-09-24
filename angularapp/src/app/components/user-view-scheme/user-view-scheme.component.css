@@ -1,0 +1,57 @@
+.user-view-scheme {
+  font-family: 'Segoe UI', sans-serif;
+  padding: 20px;
+  background-color: #f0f8ff; /* Light blue background */
+}
+
+.scheme-section h2 {
+  color: #004080; /* Dark blue heading */
+  margin-bottom: 20px;
+}
+
+.scheme-section input[type="text"] {
+  padding: 8px;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+  border: 1px solid #007acc;
+  border-radius: 4px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+}
+
+th {
+  background-color: #007acc;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.no-records {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+button.apply {
+  background-color: #0059b3;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.apply:hover {
+  background-color: #004080;
+}

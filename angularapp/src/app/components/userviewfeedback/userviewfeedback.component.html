@@ -1,0 +1,54 @@
+<app-usernav></app-usernav>
+<br>
+
+<div class="feedback-wrapper">
+  <h2>My Feedback</h2>
+
+  <table class="feedback-table">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Feedback</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="feedbackList.length === 0">
+        <td colspan="9" class="no-records">Oops! No records found.</td>
+      </tr>
+      <tr *ngFor="let feedback of feedbackList; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ feedback.feedbackText }}</td>
+        <td>
+
+          <button (click)="viewSchemeInfo(feedback.wifiScheme.wifiSchemeId)">View Scheme Info</button>
+          <button (click)="promptDelete(feedback.feedbackId)">Delete</button>
+        </td>
+      </tr>      
+    </tbody>
+  </table>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+</div>
+<div class="modal" *ngIf="selectedwifiScheme">
+  <div class="modal-content">
+    <button class="close" (click)="closeModal()" aria-label="Close modal">&times;</button>
+    <h3>Scheme Details</h3>
+    <p><strong>Scheme Name:</strong>{{ selectedwifiScheme.schemeName }}</p>
+    <p><strong>Region:</strong>{{ selectedwifiScheme.region}}</p>
+    <p><strong>Speed:</strong>{{ selectedwifiScheme.speed}}</p>
+    <p><strong>Data Limit:</strong> {{ selectedwifiScheme.dataLimit}}</p>
+    <p><strong>Fee:</strong> {{selectedwifiScheme.fee }}</p>
+    <p><strong>Description:</strong> {{ selectedwifiScheme.description}}</p>
+    <p><strong>Availability Status:</strong>{{ selectedwifiScheme.availabilityStatus}}</p>
+  </div>
+</div>
+<div class="modal" *ngIf="showDeleteConfirm">
+  <div class="modal-content">
+    <p>Are you sure you want to delete this feedback?</p>
+    <button class="btn btn-danger" (click)="confirmDelete()">Yes, Delete</button>
+    <button class="btn btn-secondary" (click)="cancelDelete()">Cancel</button>
+  </div>
+</div>

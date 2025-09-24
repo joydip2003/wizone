@@ -1,0 +1,41 @@
+<app-usernav></app-usernav>
+<br>
+
+<div class="feedback-wrapper">
+  <h2>Add Feedback</h2>
+
+  <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select formControlName="category" id="category">
+        <option value="">-- Select --</option>
+        <option value="Pricing">Pricing</option>
+        <option value="Service">Service</option>
+      </select>
+      <div class="error" *ngIf="feedbackForm.get('category')?.touched && feedbackForm.get('category')?.invalid">
+        Please select a category.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="feedbackText">Comment</label>
+      <textarea id="feedbackText" formControlName="feedbackText" rows="3"></textarea>
+      <div class="error" *ngIf="feedbackForm.get('feedbackText')?.touched && feedbackForm.get('feedbackText')?.invalid">
+        Please enter a valid comment (min 3 characters).
+      </div>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <div *ngIf="successPopup" class="popup">
+    <div class="popup-content">
+      <p> Feedback submitted!</p>
+      <button (click)="closePopup()">OK</button>
+    </div>
+  </div>
+
+  <div *ngIf="error" class="error-message">
+    {{ error }}
+  </div>
+</div>

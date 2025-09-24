@@ -1,0 +1,178 @@
+
+/* === Main Container === */
+.container {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 30px;
+  background: linear-gradient(to right, #f0f9ff, #eef6ff);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  font-family: 'Segoe UI', sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+
+/* === Heading === */
+.container h2 {
+  text-align: center;
+  color: #1e3a8a;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+/* === Category Filter === */
+#categoryFilter {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #93c5fd;
+  font-size: 14px;
+  background-color: #ffffff;
+  color: #1e293b;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.08);
+}
+
+#categoryFilter:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+label[for="categoryFilter"] {
+  font-weight: 600;
+  color: #1e3a8a;
+  margin-right: 10px;
+}
+
+/* === Feedback Table === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+  margin-top: 15px;
+}
+
+thead {
+  background: linear-gradient(135deg, #2193b0, #01181d);
+  color: white;
+}
+
+th, td {
+  padding: 14px 12px;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+tbody tr:hover {
+  background-color: #eff6ff;
+  transition: background-color 0.3s ease;
+}
+
+/* === Action Buttons === */
+button {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  margin: 2px;
+  border: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: #fff;
+  background-color: #2563eb;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+}
+
+button:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.35);
+}
+
+/* === Feedback Modal Styling === */
+div[style*="position: fixed"][style*="z-index"] {
+  animation: modalShow 0.35s ease-in-out forwards;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12) !important;
+  border: 1px solid #c7d2fe !important;
+  max-width: 350px;
+  background-color: #ffffff !important;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 20px !important;
+  z-index: 1000;
+}
+
+/* Modal Titles */
+div[style*="position: fixed"] h3 {
+  color: #1e3a8a;
+  margin-bottom: 14px;
+  font-size: 1.2rem;
+}
+
+/* Modal Paragraphs */
+div[style*="position: fixed"] p {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #1e293b;
+  line-height: 1.5;
+}
+
+/* Modal Close Button */
+div[style*="position: fixed"] button {
+  background-color: #dc2626;
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  margin-top: 10px;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.2);
+  color: white;
+}
+
+div[style*="position: fixed"] button:hover {
+  background-color: #b91c1c;
+}
+
+/* === Modal Animation Keyframes === */
+@keyframes modalShow {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  table, thead, tbody, th, td, tr {
+    font-size: 13px !important;
+  }
+
+  div[style*="position: fixed"][style*="z-index"] {
+    width: 90% !important;
+    left: 5% !important;
+    transform: none !important;
+    top: 15% !important;
+  }
+}
+.text-center.mt-4.text-danger {
+  margin-top: 40px;
+  color: #ef4444;
+  font-weight: 600;
+  font-size: 1.2rem;
+  animation: pulse 2s infinite;
+}

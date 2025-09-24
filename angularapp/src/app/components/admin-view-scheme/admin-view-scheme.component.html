@@ -1,0 +1,63 @@
+<app-adminnav></app-adminnav>
+<div class="container">
+    <h2>WiFi Schemes</h2>
+  
+    <div class="controls">
+      <div class="search">
+        <label for="search">Search by: Scheme Name</label>
+        <input type="text" id="search" [(ngModel)]="searchText" (input)="applyFilter()" placeholder="Scheme Name...">
+      </div>
+    
+      <div class="filter">
+        <label for="regionFilter">Filter by Region:</label>
+        <select id="regionFilter" [(ngModel)]="selectedRegion" (change)="applyFilter()">
+          <option *ngFor="let region of uniqueRegions" [value]=region>{{ region }}</option>
+        </select>
+      </div>
+    </div>
+    
+    <table class="scheme-table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Scheme Name</th>
+          <th>Region</th>
+          <th>Speed</th>
+          <th>Data Limit</th>
+          <th>Fee</th>
+          <th>Description</th>
+          <th>Availability</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="filteredSchemes.length === 0">
+          <td colspan="9">Oops! No records found</td>
+        </tr>
+        <tr *ngFor="let scheme of filteredSchemes; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ scheme.schemeName }}</td>
+          <td>{{ scheme.region }}</td>
+          <td>{{ scheme.speed }}</td>
+          <td>{{ scheme.dataLimit }}</td>
+          <td>{{ scheme.fee }}</td>
+          <td>{{ scheme.description }}</td>
+          <td>{{ scheme.availabilityStatus }}</td>
+          <td>
+            <button class="edit-button" (click)="edit(scheme.wifiSchemeId)">Edit</button>
+            <button class="delete-button" (click)="confirmDelete(scheme.wifiSchemeId)">Delete</button>
+            <button class="availability-button" (click)="toggleAvailability(scheme)">{{ scheme.availabilityStatus === 'Available' ? 'Make Unavailable' : 'Make Available' }}</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div *ngIf="showDeleteConfirm" class="delete-confirm-popup">
+      <div class="popup-content">
+        <p>Are you sure you want to delete?</p>
+        <button (click)="deleteScheme()" class="pop-delete">Yes, Delete</button>
+        <button (click)="cancelDelete()">Cancel</button>
+      </div>
+    </div>
+  </div>
+  

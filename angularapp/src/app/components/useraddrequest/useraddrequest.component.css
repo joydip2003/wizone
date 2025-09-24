@@ -1,0 +1,167 @@
+/* General body and container styling for a clean background */
+body {
+    background-color: #f5f5f5; /* Light gray background */
+    font-family: Arial, sans-serif; /* Ensure a readable font */
+  }
+  
+  .container {
+    margin-top: 30px; /* Add some space at the top */
+    max-width: 700px; /* Limit the maximum width of the container */
+    margin-left: auto; /* Center the container */
+    margin-right: auto; /* Center the container */
+  }
+  
+  .card {
+    background-color: #ffffff; /* White background for the card */
+    border-radius: 8px; /* Rounded corners for the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* More prominent shadow */
+    padding: 30px; /* Add padding inside the card */
+  }
+  
+  h3 {
+    text-align: center; /* Center the heading */
+    color: #1565c0; /* Dark blue heading color */
+    margin-bottom: 30px; /* Add space below the heading */
+  }
+  
+  /* Style for the back button */
+  .btn-outline-primary {
+    color: #1976d2; /* Blue text */
+    border-color: #1976d2; /* Blue border */
+    margin-bottom: 20px; /* Space below the back button */
+  }
+  
+  .btn-outline-primary:hover {
+    color: #ffffff; /* White text on hover */
+    background-color: #1976d2; /* Blue background on hover */
+  }
+  
+  /* Styling for form groups (labels and inputs) */
+  .form-group {
+    margin-bottom: 20px; /* Space between form groups */
+  }
+  
+  .form-group label {
+    display: block; /* Make labels block elements for better spacing */
+    margin-bottom: 8px; /* Space between label and input */
+    color: #333; /* Dark gray color for labels */
+    font-weight: bold; /* Bold labels */
+  }
+  
+  .form-control {
+    display: block; /* Make inputs block elements */
+    width: 100%; /* Make inputs take full width */
+    padding: 10px 15px; /* Add padding inside inputs */
+    font-size: 1rem; /* Standard font size */
+    line-height: 1.5;
+    color: #495057; /* Text color */
+    background-color: #fff; /* White background */
+    background-clip: padding-box;
+    border: 1px solid #ced4da; /* Light gray border */
+    border-radius: 4px; /* Rounded corners for inputs */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .form-control:focus {
+    border-color: #80bdff; /* Lighter blue border on focus */
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Blue focus ring */
+  }
+  
+  textarea.form-control {
+    min-height: 100px; /* Set a minimum height for the textarea */
+  }
+  
+  /* Style for validation errors */
+  .text-danger {
+    color: #dc3545; /* Standard red for errors */
+    font-size: 0.875em; /* Smaller font size for error messages */
+    margin-top: 5px; /* Space above error message */
+  }
+  
+  /* Style for the submit button */
+  .btn-primary {
+    display: block; /* Make button block element */
+    width: 100%; /* Make button take full width */
+    color: #fff; /* White text */
+    background-color: #007bff; /* Standard blue button */
+    border-color: #007bff; /* Standard blue border */
+    padding: 12px 20px; /* Add padding */
+    font-size: 1.1rem; /* Slightly larger font size */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Indicate it's clickable */
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .btn-primary:hover {
+    color: #fff;
+    background-color: #0056b3; /* Darker blue on hover */
+    border-color: #004085;
+  }
+  
+  .btn-primary:disabled {
+    opacity: 0.65; /* Reduce opacity when disabled */
+    cursor: not-allowed; /* Indicate it's not clickable */
+  }
+  
+ /* Blue-themed success popup modal */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(21, 101, 192, 0.5); /* Semi-transparent blue */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1040;
+}
+
+.modal-backdrop .bg-white {
+  background-color: #e3f2fd; /* Light blue background */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  min-width: 320px;
+  max-width: 90%;
+  z-index: 1050;
+  border: 2px solid #1976d2; /* Blue border */
+}
+
+.modal-backdrop h5 {
+  margin-bottom: 20px;
+  color: #1565c0; /* Dark blue text */
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.modal-backdrop .btn-success {
+  background-color: #1976d2; /* Blue button */
+  border-color: #1976d2;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.modal-backdrop .btn-success:hover {
+  background-color: #0d47a1; /* Darker blue on hover */
+  border-color: #0d47a1;
+}
+
+  
+  label[for="streetName"]::after,
+label[for="landmark"]::after,
+label[for="city"]::after,
+label[for="state"]::after,
+label[for="zipCode"]::after,
+label[for="preferredSetupDate"]::after,
+label[for="timeSlot"]::after,
+label[for="proof"]::after {
+  content: " *";
+  color: red;
+  font-weight: bold;
+}

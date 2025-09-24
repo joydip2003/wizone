@@ -1,0 +1,403 @@
+/* === WiFi Scheme List Container === */
+.container {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 20px 25px;
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  border-radius: 12px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+  border: 1px solid #dbeafe;
+  font-family: 'Segoe UI', sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Heading */
+.container h2 {
+  text-align: center;
+  color: #1e3a8a;
+  margin-bottom: 25px;
+  font-size: 1.5em;
+  letter-spacing: 0.5px;
+}
+
+/* === Controls (Search + Filter + Toggle) === */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.controls label {
+  font-weight: 600;
+  color: #1e3a8a;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.controls input,
+.controls select,
+.controls .toggle-button {
+  padding: 10px 12px;
+  border: 1px solid #93c5fd;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 14px;
+  width: 250px;
+  transition: all 0.3s ease-in-out;
+}
+
+.controls .toggle-button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.controls .toggle-button:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.controls input:focus,
+.controls select:focus,
+.controls .toggle-button:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .controls input,
+  .controls select,
+  .controls .toggle-button {
+    width: 100%;
+  }
+}
+
+/* === Table Styling === */
+.scheme-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.scheme-table thead {
+  background: linear-gradient(135deg, #2193b0, #01181d);
+  color: white;
+}
+
+.scheme-table th,
+.scheme-table td {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.scheme-table th {
+  cursor: pointer;
+  position: relative;
+}
+
+.scheme-table tbody tr:hover {
+  background-color: #f1f5ff;
+  transition: background-color 0.3s ease;
+}
+
+.scheme-table td[colspan='9'] {
+  text-align: center;
+  font-style: italic;
+  color: #64748b;
+  padding: 20px;
+}
+
+/* === Sort Icon Styling === */
+.sort-icon {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.sort-icon.asc::after {
+  content: '↑';
+  color: #93c5fd;
+}
+
+.sort-icon.desc::after {
+  content: '↓';
+  color: #93c5fd;
+}
+
+.sort-icon.asc:hover,
+.sort-icon.desc:hover {
+  transform: scale(1.2);
+}
+
+/* === Progress Bar Styling === */
+.progress-bar {
+  position: relative;
+  width: 100px;
+  height: 8px;
+  background-color: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  transition: width 1s ease-in-out;
+}
+
+.progress-bar span {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #1e3a8a;
+}
+
+/* === Tooltip Styling === */
+.tooltip {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #1e3a8a;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+/* === Card View Styling === */
+.scheme-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 10px;
+}
+
+.scheme-card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scheme-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.2em;
+  color: #1e3a8a;
+}
+
+.card-body p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #334155;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.empty-message {
+  text-align: center;
+  font-style: italic;
+  color: #64748b;
+  padding: 20px;
+  grid-column: 1 / -1;
+}
+
+/* === Action Buttons === */
+.edit-button,
+.delete-button,
+.availability-button {
+  padding: 6px 10px;
+  margin: 2px;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.edit-button {
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  color: white;
+}
+
+.delete-button {
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+  color: white;
+}
+
+.availability-button {
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+  color: white;
+}
+
+.edit-button:hover,
+.delete-button:hover,
+.availability-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.edit-button:focus,
+.delete-button:focus,
+.availability-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.4);
+}
+
+/* If scheme is unavailable, toggle button should be orange */
+.availability-button.unavailable {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+/* === Availability Status === */
+.availability-status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.availability-status.available {
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+  color: white;
+}
+
+.availability-status.unavailable {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  color: white;
+}
+
+/* === Delete Confirmation Popup === */
+.delete-confirm-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(30, 58, 138, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 320px;
+  animation: slideUp 0.3s ease-in-out;
+}
+
+.popup-content p {
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.popup-content button {
+  padding: 8px 14px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  margin: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pop-delete{
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+  color: white;
+}
+
+.popup-content button:last-child {
+  background: linear-gradient(90deg, #93c5fd, #bfdbfe);
+  color: #1e3a8a;
+}
+
+.popup-content button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

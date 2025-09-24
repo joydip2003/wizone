@@ -1,0 +1,121 @@
+<app-usernav></app-usernav>
+<br>
+<div class="container mt-4">
+  <div class="card p-4">
+    <h3 class="text-center mb-4">WiFi Scheme Request Form</h3>
+
+    <div *ngIf="scheme" class="mb-3">
+      <h5>Selected Scheme</h5>
+      <p><strong>Scheme Name:</strong> {{ scheme.schemeName }}</p>
+      <p><strong>Description:</strong> {{ scheme.description }}</p>
+      <p><strong>Region:</strong> {{ scheme.region }}</p>
+      <p><strong>Speed:</strong> {{ scheme.speed }}</p>
+      <p><strong>Data Limit:</strong> {{ scheme.dataLimit }}</p>
+      <p><strong>Fee:</strong> ₹{{ scheme.fee }}</p>
+    </div>
+
+    <button class="btn btn-outline-primary mb-3" (click)="redirectToScheme()">Back</button>
+
+    <form [formGroup]="requestForm" (ngSubmit)="submitRequest()" novalidate *ngIf="!success">
+      <input type="hidden" formControlName="userId">
+      <input type="hidden" formControlName="wifiSchemeId">
+
+      <div class="form-group mb-2">
+        <label for="streetName">Street Name </label>
+        <input type="text" class="form-control" formControlName="streetName" id="streetName">
+        <div class="text-danger" *ngIf="requestForm.get('streetName')?.invalid && requestForm.get('streetName')?.touched">
+          *Street Name is required
+        </div>
+      </div>
+
+      <div class="form-group mb-2">
+        <label for="landmark">Landmark </label>
+        <input type="text" class="form-control" formControlName="landmark" id="landmark">
+        <div class="text-danger" *ngIf="requestForm.get('landmark')?.invalid && requestForm.get('landmark')?.touched">
+          *Landmark is required
+        </div>
+      </div>
+
+      <div class="form-group mb-2">
+        <label for="city">City </label>
+        <input type="text" class="form-control" formControlName="city" id="city">
+        <div class="text-danger" *ngIf="requestForm.get('city')?.invalid && requestForm.get('city')?.touched">
+          *City is required
+        </div>
+      </div>
+
+      <div class="form-group mb-2">
+        <label for="state">State </label>
+        <input type="text" class="form-control" formControlName="state" id="state">
+        <div class="text-danger" *ngIf="requestForm.get('state')?.invalid && requestForm.get('state')?.touched">
+          *State is required
+        </div>
+      </div>
+
+      <div class="form-group mb-2">
+        <label for="zipCode">ZIP Code </label>
+        <input type="text" class="form-control" formControlName="zipCode" id="zipCode">
+        <div class="text-danger" *ngIf="requestForm.get('zipCode')?.invalid && requestForm.get('zipCode')?.touched">
+          *ZIP Code is required
+        </div>
+      </div>
+      <div class="form-group mb-2">
+        <label for="preferredSetupDate">Preferred Setup Date </label>
+        <input type="date" class="form-control" formControlName="preferredSetupDate" id="preferredSetupDate">
+        <div *ngIf="requestForm.get('preferredSetupDate')?.errors?.pastDate && requestForm.get('preferredSetupDate')?.touched">
+          <small class="text-danger">Preferred date cannot be in the past.</small>
+        </div>        
+      </div>
+
+      <div class="form-group mb-2">
+        <label for="timeSlot">Preferred Time Slot </label>
+        <select class="form-control" formControlName="timeSlot" id="timeSlot" >
+          <option value="" disabled>Select a time slot</option>
+          <option value="Morning">Morning (9AM - 12PM)</option>
+          <option value="Afternoon">Afternoon (12PM - 3PM)</option>
+          <option value="Evening">Evening (3PM - 6PM)</option>
+        </select>
+        <div class="text-danger" *ngIf="requestForm.get('timeSlot')?.invalid && requestForm.get('timeSlot')?.touched">
+          *Time slot is required
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="proof" class="form-label"><strong>Proof </strong></label>
+<input
+  type="file"
+  id="proof"
+  class="form-control"
+  (change)="onFileChange($event)"
+  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+/>
+        <div *ngIf="imagePreview" class="mt-2">
+          <img *ngIf="imagePreview && imagePreview.toString().startsWith('data:image')" [src]="imagePreview" alt="Preview" class="img-thumbnail" width="100">
+        </div>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="comments">Comments</label>
+        <textarea class="form-control" rows="3" formControlName="comments" id="comments"></textarea>
+      </div>
+
+      <button
+        class="btn btn-primary btn-block"
+        type="submit"
+        [disabled]="requestForm.invalid || !proofBase64 || fileError"
+      >
+        Submit
+      </button>
+
+      <p *ngIf="error" class="text-danger mt-3">{{ error }}</p>
+    </form>
+
+    <!-- Success Popup -->
+    <div *ngIf="successPopup" class="modal-backdrop show d-flex align-items-center justify-content-center">
+      <div class="bg-white p-4 rounded shadow" style="min-width: 300px;">
+        <h5 class="mb-3">Request Submitted Successfully</h5>
+        <button class="btn btn-success" (click)="closePopup()">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

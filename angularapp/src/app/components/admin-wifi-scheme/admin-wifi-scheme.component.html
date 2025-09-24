@@ -1,0 +1,126 @@
+<app-adminnav></app-adminnav>
+<br>
+
+<div *ngIf="!isEditMode">
+<h3>Add WiFi Scheme</h3>
+<form #schemeForm="ngForm" (ngSubmit)="addScheme(schemeForm)">
+  <div>
+    <label for="schemeName">Scheme Name</label>
+    <input id="schemeName" [(ngModel)]="scheme.schemeName" name="schemeName" required #schemeName="ngModel" />
+    <div *ngIf="schemeName.invalid && schemeName.touched" class="error">Scheme Name is required.</div>
+  </div>
+
+  <div>
+    <label for="description">Description</label>
+    <input id="description" [(ngModel)]="scheme.description" name="description" required #description="ngModel" />
+    <div *ngIf="description.invalid && description.touched" class="error">Description is required.</div>
+  </div>
+
+  <div>
+    <label for="region">Region</label>
+    <input id="region" [(ngModel)]="scheme.region" name="region" required #region="ngModel" />
+    <div *ngIf="region.invalid && region.touched" class="error">Region is required.</div>
+  </div>
+
+  <div>
+    <label for="speed">Speed</label>
+    <input id="speed" [(ngModel)]="scheme.speed" name="speed" required #speed="ngModel" />
+    <div *ngIf="speed.invalid && speed.touched" class="error">Speed is required.</div>
+  </div>
+
+  <div>
+    <label for="dataLimit">Data Limit</label>
+    <input id="dataLimit" [(ngModel)]="scheme.dataLimit" name="dataLimit" required #dataLimit="ngModel" />
+    <div *ngIf="dataLimit.invalid && dataLimit.touched" class="error">Data Limit is required.</div>
+  </div>
+
+  <div>
+    <label for="fee">Fee</label>
+    <input id="fee" [(ngModel)]="scheme.fee" name="fee" type="number" required #fee="ngModel" />
+    <div *ngIf="fee.invalid && fee.touched" class="error">Fee is required.</div>
+  </div>
+
+  <div>
+    <label for="availabilityStatus">Availability Status</label>
+    <select id="availabilityStatus" [(ngModel)]="scheme.availabilityStatus" name="availabilityStatus" required #availabilityStatus="ngModel">
+      <option value="Available">Available</option>
+      <option value="Unavailable">Unavailable</option>
+    </select>
+    <div *ngIf="availabilityStatus.invalid && availabilityStatus.touched" class="error">Availability status is required.</div>
+  </div>
+
+  <button type="submit">Add Scheme</button>
+</form>
+<!-- Success Popup for Add Mode -->
+<div *ngIf="successPopup && !isEditMode" class="modal-backdrop show d-flex align-items-center justify-content-center">
+  <div class="bg-white p-4 rounded shadow" style="min-width: 300px;">
+    <h5 class="mb-3">✔️ {{ successMsg }}</h5>
+    <button class="btn btn-primary" (click)="closePopup()">OK</button>
+  </div>
+</div>
+
+</div>
+
+
+
+
+
+<div *ngIf="isEditMode">
+  <h3>Update WiFi Scheme</h3>
+  <form #schemeForm="ngForm" (ngSubmit)="updateScheme(schemeForm)">
+    <div>
+      <label for="schemeName">Scheme Name</label>
+      <input id="schemeName" [(ngModel)]="scheme.schemeName" name="schemeName" required #schemeName="ngModel" />
+      <div *ngIf="schemeName.invalid && schemeName.touched" class="error">Scheme Name is required.</div>
+    </div>
+  
+    <div>
+      <label for="description">Description</label>
+      <input id="description" [(ngModel)]="scheme.description" name="description" required #description="ngModel" />
+      <div *ngIf="description.invalid && description.touched" class="error">Description is required.</div>
+    </div>
+  
+    <div>
+      <label for="region">Region</label>
+      <input id="region" [(ngModel)]="scheme.region" name="region" required #region="ngModel" />
+      <div *ngIf="region.invalid && region.touched" class="error">Region is required.</div>
+    </div>
+  
+    <div>
+      <label for="speed">Speed</label>
+      <input id="speed" [(ngModel)]="scheme.speed" name="speed" required #speed="ngModel" />
+      <div *ngIf="speed.invalid && speed.touched" class="error">Speed is required.</div>
+    </div>
+  
+    <div>
+      <label for="dataLimit">Data Limit</label>
+      <input id="dataLimit" [(ngModel)]="scheme.dataLimit" name="dataLimit" required #dataLimit="ngModel" />
+      <div *ngIf="dataLimit.invalid && dataLimit.touched" class="error">Data Limit is required.</div>
+    </div>
+  
+    <div>
+      <label for="fee">Fee</label>
+      <input id="fee" [(ngModel)]="scheme.fee" name="fee" type="number" required #fee="ngModel" />
+      <div *ngIf="fee.invalid && fee.touched" class="error">Fee is required.</div>
+    </div>
+  
+    <div>
+      <label for="availabilityStatus">Availability Status</label>
+      <select id="availabilityStatus" [(ngModel)]="scheme.availabilityStatus" name="availabilityStatus" required #availabilityStatus="ngModel">
+        <option value="Available">Available</option>
+        <option value="Unavailable">Unavailable</option>
+      </select>
+      <div *ngIf="availabilityStatus.invalid && availabilityStatus.touched" class="error">Availability status is required.</div>
+    </div>
+  
+    <button type="submit">Update Scheme</button>
+  </form>
+  <!-- Success Popup -->
+<div *ngIf="successPopup" class="modal-backdrop show d-flex align-items-center justify-content-center">
+  <div class="bg-white p-4 rounded shadow" style="min-width: 300px;">
+    <h5 class="mb-3">✔️ {{ successMsg }}</h5>
+    <button class="btn btn-primary" (click)="closePopup()">OK</button>
+  </div>
+</div>
+
+</div>

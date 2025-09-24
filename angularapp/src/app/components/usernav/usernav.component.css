@@ -1,0 +1,67 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #2193b0, #01181d); /* same gradient as logout */
+  color: white;
+  padding: 10px 20px;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 18px;
+  margin-right: 20px;
+  color: #ffffff;
+}
+
+.role {
+  margin-right: auto;
+  font-size: 14px;
+  font-style: italic;
+  color: #f0f8ff;
+}
+
+.links a {
+  margin-left: 15px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.links a:hover {
+  color: #528e93;
+}
+
+
+.logout-btn {
+  margin-left: 15px;
+  background: linear-gradient(135deg, #6dd5ed, #2193b0); /* soft blue gradient */
+  border: none;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.4s ease, transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logout-btn:hover {
+  background: linear-gradient(135deg, #2193b0, rgb(12, 88, 105)); /* reverse gradient */
+  transform: scale(1.05);
+}
+
+
+
+.admin-content-wrapper {
+  margin: 20px auto;
+  padding: 30px;
+  max-width: 1000px;
+  background: #f9fbfc;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+

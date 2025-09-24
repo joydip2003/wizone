@@ -1,0 +1,43 @@
+
+
+
+<div class="page-split-container">
+  <!-- Left side (Red banner section) -->
+  <div class="left-banner">
+    <h1>Step into your zone. WiZone makes it all easier!</h1>
+    <p>Login now and manage all your WiZone services.</p>
+  </div>
+
+  <!-- Right side (Login card) -->
+  <div class="right-form-container">
+    <div class="login-card">
+      <h2 class="login-title">WiZone Login</h2>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" formControlName="email" class="form-input" />
+        <div *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid" class="error-msg">
+          <div *ngIf="loginForm.get('email')?.errors?.required">Email is required.</div>
+          <div *ngIf="loginForm.get('email')?.errors?.email">Enter a valid email address.</div>
+        </div>
+
+        <label for="password" class="form-label">Password</label>
+        <input type="password" id="password" formControlName="password" class="form-input" />
+        <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="error-msg">
+          <div *ngIf="loginForm.get('password')?.errors?.required">Password is required.</div>
+          <div *ngIf="loginForm.get('password')?.errors?.minlength">
+            Password must be at least 6 characters.
+          </div>
+        </div>
+
+        <div *ngIf="errorMsg" class="error-msg">{{ errorMsg }}</div>
+
+        <button type="submit" [disabled]="loginForm.invalid" class="submit-btn">Login</button>
+      </form>
+
+      <p class="bottom-link">
+        Don't have an account? <a routerLink="/signup">Signup</a>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,148 @@
+
+<div class="signup-container">
+  <!-- Left Panel -->
+  <div class="left-panel">
+    <h2>We're holding the door for you!</h2>
+    <p>Sign Up now and manage all your WiZone services.</p>
+  </div>
+
+  <!-- Right Panel -->
+  <div class="right-panel">
+    <div class="form-wrapper">
+      <h2 class="signup-title">WiZone Sign-Up</h2>
+
+      <div *ngIf="errorMsg" class="error-msg">{{ errorMsg }}</div>
+      <div *ngIf="successMsg" class="success-msg">{{ successMsg }}</div>
+
+      <form [formGroup]="SignUpForm" (ngSubmit)="saveForm()" class="signup-form">
+        <input type="text" id="username" placeholder="Enter your username" formControlName="username" class="form-input" />
+        <div *ngIf="SignUpForm.controls['username']?.invalid && SignUpForm.controls['username']?.touched" class="error-msg">
+          <small *ngIf="SignUpForm.controls['username'].errors?.required">Username is required</small>
+        </div>
+
+        <input type="email" id="email" placeholder="Enter your email" formControlName="email" class="form-input" />
+        <div *ngIf="SignUpForm.controls['email']?.invalid && SignUpForm.controls['email']?.touched" class="error-msg">
+          <small *ngIf="SignUpForm.controls['email'].errors?.required">Email is required</small>
+          <small *ngIf="SignUpForm.controls['email'].errors?.email">Please enter a valid email</small>
+        </div>
+
+        <input type="text" id="mobileNumber" placeholder="Enter 10-digit mobile number" formControlName="mobileNumber" class="form-input" />
+        <div *ngIf="SignUpForm.controls['mobileNumber']?.invalid && SignUpForm.controls['mobileNumber']?.touched" class="error-msg">
+          <small *ngIf="SignUpForm.controls['mobileNumber'].errors?.required">Mobile Number is required</small>
+          <small *ngIf="SignUpForm.controls['mobileNumber'].errors?.pattern">Mobile Number must be 10 digits</small>
+        </div>
+
+        <input type="password" id="password" placeholder="Enter a secure password" formControlName="password" class="form-input" />
+        <div *ngIf="SignUpForm.controls['password']?.invalid && SignUpForm.controls['password']?.touched" class="error-msg">
+          <small *ngIf="SignUpForm.controls['password'].errors?.required">Password is required</small>
+          <small *ngIf="SignUpForm.controls['password'].errors?.minlength">Password must be at least 6 characters</small>
+        </div>
+
+        <input type="password" id="confirmPassword" placeholder="Confirm password" formControlName="confirmPassword" class="form-input" />
+        <div *ngIf="SignUpForm.controls['confirmPassword']?.touched" class="error-msg">
+          <small *ngIf="SignUpForm.controls['confirmPassword'].errors?.required">Confirm Password is required</small>
+          <small *ngIf="SignUpForm.errors?.PasswordMismatch && SignUpForm.controls['confirmPassword']?.dirty">
+            Password and Confirm Password must be same
+          </small>
+        </div>
+
+        <select id="role" formControlName="role" class="form-select">
+          <option value="">Select Role</option>
+          <option value="User">User</option>
+          <option value="Admin">Admin</option>
+        </select>
+        <div *ngIf="SignUpForm.controls['role'].errors?.required && SignUpForm.controls['role']?.touched" class="error-msg">
+          <small>User Role is required</small>
+        </div>
+
+        <button type="submit" [disabled]="SignUpForm.invalid" class="submit-btn">Sign Up</button>
+
+        <div class="login-redirect">
+          <p>Already have an account? <a routerLink="/login" class="login-link">Login</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <h2 class="signup-title">Sign Up</h2>
+
+<div *ngIf="errorMsg" class="error-msg">{{ errorMsg }}</div>
+<div *ngIf="successMsg" class="success-msg">{{ successMsg }}</div>
+
+<form [formGroup]="SignUpForm" (ngSubmit)="saveForm()" class="signup-form">
+  <input type="text" id="username" placeholder="Username" formControlName="username" class="form-input" />
+  <div *ngIf="SignUpForm.controls['username']?.invalid && SignUpForm.controls['username']?.touched" class="error-msg">
+    <small *ngIf="SignUpForm.controls['username'].errors?.required">Username is required</small>
+  </div>
+
+  <input type="email" id="email" placeholder="Email" formControlName="email" class="form-input" />
+  <div *ngIf="SignUpForm.controls['email']?.invalid && SignUpForm.controls['email']?.touched" class="error-msg">
+    <small *ngIf="SignUpForm.controls['email'].errors?.required">Email is required</small>
+    <small *ngIf="SignUpForm.controls['email'].errors?.email">Please enter a valid email</small>
+  </div>
+
+  <input type="text" id="mobileNumber" placeholder="Mobile" formControlName="mobileNumber" class="form-input" />
+  <div *ngIf="SignUpForm.controls['mobileNumber']?.invalid && SignUpForm.controls['mobileNumber']?.touched" class="error-msg">
+    <small *ngIf="SignUpForm.controls['mobileNumber'].errors?.required">Mobile Number is required</small>
+    <small *ngIf="SignUpForm.controls['mobileNumber'].errors?.pattern">Mobile Number must be 10 digits</small>
+  </div>
+
+  <input type="password" id="password" placeholder="Password" formControlName="password" class="form-input" />
+  <div *ngIf="SignUpForm.controls['password']?.invalid && SignUpForm.controls['password']?.touched" class="error-msg">
+    <small *ngIf="SignUpForm.controls['password'].errors?.required">Password is required</small>
+    <small *ngIf="SignUpForm.controls['password'].errors?.minlength">Password must be at least 6 characters</small>
+  </div>
+
+  <input type="password" id="confirmPassword" placeholder="Confirm Password" formControlName="confirmPassword" class="form-input" />
+  <div *ngIf="SignUpForm.controls['confirmPassword']?.touched" class="error-msg">
+    <small *ngIf="SignUpForm.controls['confirmPassword'].errors?.required">Confirm Password is required</small>
+    <small *ngIf="SignUpForm.errors?.PasswordMismatch && SignUpForm.controls['confirmPassword']?.dirty">
+      Password and Confirm Password must be same
+    </small>
+  </div>
+
+  <select id="role" formControlName="role" class="form-select">
+    <option value="">Select Role</option>
+    <option value="User">User</option>
+    <option value="Admin">Admin</option>
+  </select>
+  <div *ngIf="SignUpForm.controls['role'].errors?.required && SignUpForm.controls['role']?.touched" class="error-msg">
+    <small>User Role is required</small>
+  </div>
+
+  <button type="submit" [disabled]="SignUpForm.invalid" class="submit-btn">Signup</button>
+</form>
+
+<div class="login-redirect">
+  <p>Already have an account? <a routerLink="/login" class="login-link">Login</a></p>
+</div> -->

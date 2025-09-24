@@ -1,0 +1,14 @@
+<nav class="admin-navbar">
+  <div class="logo">WiZone</div>
+  <div class="role">{{username}} / Admin</div>
+  <div class="nav-links">
+    <a routerLink="/admin/nav">Home</a>
+    <a routerLink="/admin/dashboard">Dashboard</a>
+    <a routerLink="/admin/wifi-schemes">WiFi Schemes</a>
+    <a routerLink="/admin/view-schemes">View WiFi Schemes</a>
+    <a routerLink="/admin/requests">Requests</a>
+    <a routerLink="/admin/feedbacks">Feedbacks</a>
+    <button class="logout-btn" (click)="onLogout()">Logout</button>
+  </div>
+</nav>
+

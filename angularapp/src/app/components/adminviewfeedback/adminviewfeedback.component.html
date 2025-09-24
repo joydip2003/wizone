@@ -1,0 +1,99 @@
+<app-adminnav></app-adminnav>
+<br>
+<div class="container" style="padding: 20px">
+    <h2>All Feedbacks</h2>
+  
+    <!-- Category Filter -->
+    <div style="margin-bottom: 15px">
+      <label for="categoryFilter">Filter by Category:</label>
+      <select id="categoryFilter" [(ngModel)]="filterCategory">
+        <option value="All">All</option>
+        <option value="Service">Service</option>
+        <option value="Pricing">Pricing</option>
+      </select>
+    </div>
+  
+    <!-- Feedback Table -->
+    <table border="1" cellpadding="10" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th>S.No.</th>
+          <th>User</th>
+          <th>Feedback</th>
+          <th>Date</th>
+          <th>Scheme</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feedback of getFilteredFeedbacks(); let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ feedback.user?.username }}</td>
+          <td>{{ feedback.feedbackText }}</td>
+          <td>{{ feedback.date | date: 'mediumDate' }}</td>
+          <td>{{ feedback.wifiScheme?.schemeName }}</td>
+          <td>
+            <button (click)="viewUserProfile(feedback)">Show Profile</button>
+            <button (click)="viewSchemeInfo(feedback.wifiScheme)">
+              View Scheme
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="feedbacks.length === 0" class="text-center mt-4 text-danger">
+      Oops! No records found.
+    </div>
+  </div>
+  
+  <!-- User Info Modal -->
+  <div
+    *ngIf="selectedFeedback"
+    style="
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border: 1px solid #ccc;
+      padding: 20px;
+      z-index: 1000;
+      width: 300px;
+    "
+  >
+    <h3>User Info</h3>
+    <p><strong>Username:</strong> {{ selectedFeedback.user?.username }}</p>
+    <p><strong>Email:</strong> {{ selectedFeedback.user?.email }}</p>
+    <p><strong>Mobile Number:</strong> {{ selectedFeedback.user?.mobileNumber }}</p>
+    <div style="text-align: right">
+      <button (click)="closeUserProfile()">Close</button>
+    </div>
+  </div>
+  
+  <!-- Scheme Info Modal -->
+  <div
+    *ngIf="selectedScheme"
+    style="
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border: 1px solid #ccc;
+      padding: 20px;
+      z-index: 1000;
+      width: 300px;
+    "
+  >
+    <h3>Scheme Info</h3>
+    <p><strong>Name:</strong> {{ selectedScheme.schemeName }}</p>
+    <p><strong>Description:</strong> {{ selectedScheme.description }}</p>
+    <p><strong>Region:</strong> {{ selectedScheme.region }}</p>
+    <p><strong>Speed:</strong> {{ selectedScheme.speed }}</p>
+    <p><strong>Data Limit:</strong> {{ selectedScheme.dataLimit }}</p>
+    <p><strong>Fee:</strong> ₹{{ selectedScheme.fee }}</p>
+    <p><strong>Status:</strong> {{ selectedScheme.availabilityStatus }}</p>
+    <div style="text-align: right">
+      <button (click)="closeSchemeInfo()">Close</button>
+    </div>
+  </div>

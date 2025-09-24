@@ -1,0 +1,70 @@
+<app-usernav></app-usernav>
+<br>
+<div class="container">
+  <h2>Applied WiFi Scheme Requests</h2>
+
+
+  <div class="search-bar">
+    <input [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()" placeholder="Search by scheme name" />
+  </div>
+  <div *ngIf="loading">Loading...</div>
+  <div *ngIf="!loading && filteredSchemes.length === 0">No applied schemes found.</div>
+
+  <div *ngFor="let item of filteredSchemes" class="scheme-card">
+    <h3>{{ item.scheme.schemeName }}</h3>
+    <p><strong>Region:</strong> {{ item.scheme.region }}</p>
+    <p><strong>Speed:</strong> {{ item.scheme.speed }}</p>
+    <p><strong>Data Limit:</strong> {{ item.scheme.dataLimit }}</p>
+    <p><strong>Fee:</strong> ₹{{ item.scheme.fee }}</p>
+    <p><strong>Status:</strong> {{ item.status }}</p>
+
+    
+<button class="review-btn" (click)="writeReview(item.scheme.wifiSchemeId)">Write a Review</button>
+<button class="delete-btn" (click)="promptDelete(item.requestId,item.scheme.wifiSchemeId)">Delete</button>
+<button class="more-btn" (click)="showMore(item)">Show More</button>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" *ngIf="selectedRequest">
+  <div class="modal-content">
+    <button
+  class="close"
+  (click)="closeModal()"
+  aria-label="Close modal"
+>
+  &times;
+</button>
+
+
+      <h3>Request Details</h3>
+    <p><strong>Scheme Name:</strong>{{ selectedRequest.scheme.schemeName }} </p>
+    <p><strong>Region:</strong> {{ selectedRequest.scheme.region }}</p>
+    <p><strong>Speed:</strong> {{ selectedRequest.scheme.speed }}</p>
+    <p><strong>Data Limit:</strong> {{ selectedRequest.scheme.dataLimit }}</p>
+    <p><strong>Fee:</strong> ₹{{ selectedRequest.scheme.fee }}</p>
+    <p><strong>Request Date:</strong> {{ selectedRequest.requestDate | date: 'mediumDate' }}</p>
+    <p><strong>Status:</strong> {{ selectedRequest.status }}</p>
+    <p><strong>Comments:</strong> {{ selectedRequest.comments || 'None' }}</p>
+    <p><strong>Proof:</strong></p>
+<img
+  *ngIf="selectedRequest.proof"
+  [src]="'data:image/jpeg;base64,' + selectedRequest.proof"
+  alt="Proof"
+  class="proof-image"
+  height="200"
+  width="200"
+/>
+<p *ngIf="!selectedRequest.proof">No proof available</p>
+
+  </div>
+</div>
+
+<div class="modal" *ngIf="showDeleteConfirm">
+  <div class="modal-content">
+    <p>Are you sure you want to delete this request?</p>
+    <button class="btn btn-danger" (click)="confirmDelete()">Yes, Delete</button>
+    <button class="btn btn-secondary" (click)="cancelDelete()">Cancel</button>
+  </div>
+</div>
