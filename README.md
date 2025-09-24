@@ -1,1 +1,2 @@
-
+WiZone – WiFi Scheme Management App
+Contributed as a team member in developing a full-stack web application using Spring Boot and Angular. Supported implementation of role-based authentication (Admin/User) with JWT tokens, Spring Security, and JPA/Hibernate. Assisted in building a responsive UI with form validation and routing, and helped develop a real-time analytics dashboard for WiFi scheme monitoring.
